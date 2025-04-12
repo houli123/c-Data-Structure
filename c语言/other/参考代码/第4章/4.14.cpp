@@ -1,0 +1,9 @@
+#include "stdio.h"
+int main()
+{
+	int iHen;
+	for(iHen=1;iHen<=35;iHen++)
+		if(iHen*2+(35-iHen)*4==94)
+			printf("The number of hen is %d,the number of rabbit is %d",iHen,35-iHen);
+	return 0;
+}
