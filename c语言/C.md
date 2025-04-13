@@ -112,7 +112,11 @@
    C 中的编译阶段使用内置*编译器软件*将 （.i） 临时文件转换为具有汇编级指令（低级代码）的汇编**文件** （.s）。为了提高程序的性能，编译器将中间文件转换为程序集文件。
    汇编代码是一种简单的英文语言，用于编写低级指令（在微控制器程序中，我们使用汇编语言）。整个程序代码由编译器软件一次性解析（语法分析），并通过终端窗口告诉我们源代码中存在的任何**语法错误**或**警告**。
 
+<<<<<<< HEAD
    ![assets/03.png](https://picture-bed-1352320518.cos.ap-guangzhou.myqcloud.com/assets/20250411104322677.png)
+=======
+   ![assets/03.png](assets/03.png)
+>>>>>>> origin/master
 
 3. **汇编**
    使用汇编*程序*将程序集级代码（.s 文件）转换为机器可理解的代码（二进制/十六进制形式）。汇编程序是一个预先编写的程序，它将汇编代码转换为机器代码。它从程序集代码文件中获取基本指令，并将其转换为特定于计算机类型（称为目标代码）的二进制/十六进制代码。
@@ -655,7 +659,11 @@ printf("%06d\n", 100);//前面补0
 printf("\n");
 ```
 
+<<<<<<< HEAD
 ![img](https://picture-bed-1352320518.cos.ap-guangzhou.myqcloud.com/assets/20250411104322678.png)
+=======
+![img](assets/26c4b5f6b8d4678ec814bc63aaf50d83.png)
+>>>>>>> origin/master
 
 > **对于小数，这个限定符会限制所有数字的最小显示宽度。**
 >
@@ -699,7 +707,11 @@ printf("%.10s\n", "abcdefgh");//默认情况下，打印所有的字符
 printf("%.6s\n", "abcdefgh");//超过指定位数 --- 截断
 ```
 
+<<<<<<< HEAD
 ![img](https://picture-bed-1352320518.cos.ap-guangzhou.myqcloud.com/assets/20250411104322679.png)
+=======
+![img](assets/db486b51ee7467daf226aeb716c4a7d5.png)
+>>>>>>> origin/master
 
 #### 彩色输出
 
@@ -707,11 +719,19 @@ printf("**\033[显示方式；字背景颜色;字体颜色m…\033[0m**","格式
 
 > 控制命令以 \033[ 开头，以m结尾，而中间则是属性码，属性代码之间使用 ; 分隔，如\033[1;34;42m ，最后以默认颜色 \033[0m 结尾，以避免影响后面正常打印！
 
+<<<<<<< HEAD
 ![image-20240916152841914](https://picture-bed-1352320518.cos.ap-guangzhou.myqcloud.com/assets/20250411104322680.png)
 
 ![img](https://picture-bed-1352320518.cos.ap-guangzhou.myqcloud.com/assets/20250411104322681.png)
 
 ![img](https://picture-bed-1352320518.cos.ap-guangzhou.myqcloud.com/assets/20250411104322682.png)
+=======
+![image-20240916152841914](assets/image-20240916152841914.png)
+
+![img](assets/78e6cd7093775bdd863cf5ceb003d5d3.png)
+
+![img](assets/e4b8ad318fc393b62f09f06f7ee90b18.png)
+>>>>>>> origin/master
 
 #### 返回值
 

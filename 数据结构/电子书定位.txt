@@ -1,0 +1,11 @@
+﻿上课：346
+复习排序：406
+复习到p114
+
+王道线性表习题：30
+王道书：320
+图：269
+
+csdn笔记：https://blog.csdn.net/qq_55593227/article/details/123598044
+知乎王道笔记：https://zhuanlan.zhihu.com/p/536843618
+各算法的可视化：https://www.cs.usfca.edu/~galles/visualization/Algorithms.html
