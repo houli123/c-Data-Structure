@@ -8,6 +8,11 @@ int main(){
 
     cout << meal << endl;
     cout << &food << endl;
-    cout << &meal;
+    cout << &meal << endl;
+
+    string *meal2 = &food;
+    cout << meal2 << endl;
+    cout << &food << endl;
+    cout << *meal2;  //c语言解引用
     return 0;
 }
