@@ -15,9 +15,8 @@ int main(){
     }catch(const char* msg){ //捕获上面抛出来的字符串异常信息
         cout << "Error: " << msg << endl;
     }
-    catch(...){ //捕获其他异常，包括所有类型的异常
+    catch(...){ //捕获其他异常，包括所有类型的异常。注意：catch(...)必须放在最后一个catch后面
         cout << "Unknown error occurred!" << endl;
     }
-    //catch(...){}  //捕获所有异常，注意：catch(...)必须放在最后一个catch后面
     return 0;
 }

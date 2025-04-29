@@ -16,7 +16,7 @@ class MyClass {
     int b;  //默认private
     public:
         int a;  //public
-        MyClass(int x, int y) {  //构造函数
+        MyClass(int x, int y) {  //构造函数，相当于python的__init__，注意这里和类名相同，这里指定了参数，所以创建实例时需要传参给类名
             a = x;
             b = y;
         };
@@ -33,7 +33,7 @@ class MyClass {
             c = x;
         };
 
-    protected:  //子类可以访问成员变量但不能访问成员函数，外部无法访问
+    protected:  //子类可以访问成员函数但不能访问成员变量，外部无法访问
         int d;  //protected
         void setD(int x) {
             d = x;
@@ -49,8 +49,8 @@ class Derived : public MyClass {
         Derived(int x, int y) : MyClass(x, y) {  //构造函数
             setD(x+y);  //可以访问protected成员函数
         };
-        void print() {
-            cout << "d: " << getD() << endl;  //可以访问protected成员函数，但是不能访问protected成员函数
+        void print() {   // 子类中重新写了print函数
+            cout << "d: " << getD() << endl;  //可以访问protected成员函数，但是不能访问protected成员变量，但是如果这个成员函数里有成员变量，那就能够间接的访问到成员变量
         };
 };
 
@@ -60,8 +60,8 @@ int main(){
     cout << "b: " << obj.getB() << endl;  //通过公有函数访问私有成员
     //obj.setC(3);  //错误，无法访问私有成员函数
 
-    //obj.setD(4);  //错误，无法访问protected成员函数
-    //cout << "d: " << obj.getD() << endl;  //错误，无法访问protected成员函数
+    //obj.setD(4);  //错误，外部无法访问protected成员函数
+    //cout << "d: " << obj.getD() << endl;  //错误，外部无法访问protected成员函数
 
 
     Derived obj2(3, 4);  //创建子类对象

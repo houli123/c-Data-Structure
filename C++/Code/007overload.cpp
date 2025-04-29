@@ -7,7 +7,7 @@ int plusFunc(int x, int y) {
 
 //c++支持函数重载，函数名相同，参数不同
 // 这里的参数不同是指参数类型不同，或者参数个数不同
-//如果参数类型不完全相同，则可能报错
+//如果参数类型不完全不同，则可能报错。需要确保两个函数的参数类型完全不同
 double plusFunc(double x, double y) {
     return x - y;
 }
