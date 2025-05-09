@@ -7,6 +7,8 @@ int main() {
     unordered_map<int, int> hashmap{};  // 类似与python中的字典
     unordered_map<int, string> hashmap2{{1, "apple"}, {2, "ggbond"}}; 
 
+    
+
     cout << hashmap.empty() << endl;  // 判断hashmap是否为空，返回true或false
     hashmap[1] = 2;  // 初始化一个元素
     cout << hashmap.empty() << endl;  
@@ -19,7 +21,7 @@ int main() {
     // 也可以使用find()方法来判断元素是否存在
     auto it = hashmap.find(1);
     if (it != hashmap.end()) {
-        cout << "hashmap[1] = " << it->second << endl;
+        cout << "hashmap[1] = " << it->second << endl; // 使用find查找哈希表后访问使用“->”的方式
     } else {
         cout << "hashmap[1] not found" << endl;
     }
@@ -31,8 +33,11 @@ int main() {
 
     hashmap.erase(1);  // 删除key为1的元素
 
+    cout << hashmap.size() << endl;  
+    // 遍历hashmap  
     for (auto &p: hashmap) {
         cout << p.first << ':' << p.second << endl;
     }
+
     return 0;
 }
