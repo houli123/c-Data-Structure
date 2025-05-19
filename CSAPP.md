@@ -1,3 +1,381 @@
+# 重点内容
+
+对于《深入理解计算机系统》（CSAPP）这本书，它被广泛认为是计算机科学领域的经典之作。因此，**如果时间和精力允许，通读全书无疑是最佳选择**。这本书的每一章都为你理解计算机系统搭建了坚实的基础，并且章节之间层层递进，相互关联。
+
+然而，如果你希望在有限的时间内抓住核心，或者想在通读的过程中有所侧重，那么以下是一些通常被认为是**必读或非常重要**的内容。我会尽量精确到三级标题，但请注意，不同版本和翻译的CSAPP在标题细节上可能略有差异。这里的推荐是基于CSAPP第三版（英文版）的常见结构，中文版通常会做对应翻译。
+
+**推荐的学习模式：**
+
+建议你**先快速通读一遍**，对全书内容有一个整体的印象。然后，**针对以下列出的重点章节和主题进行精读和深入理解**，包括完成相关的练习题（Labs）。其他章节可以作为辅助阅读或在需要时查阅。这种模式既能保证你掌握核心知识，又能对整个计算机系统有全面的认识。
+
+**必读/重点内容（精确到三级标题）：**
+
+以下内容是CSAPP中的核心，对于理解计算机系统的工作原理至关重要：
+
+**第一部分：程序结构和执行 (Program Structure and Execution)**
+
+- **第1章：计算机系统漫游 (A Tour of Computer Systems)**
+  - 1.1 信息就是位 + 上下文 (Information is Bits + Context)
+  - 1.2 程序被其他程序翻译成不同格式 (Programs Are Translated by Other Programs into Different Forms)
+  - 1.3 了解编译系统如何工作是大有益处的 (It Pays to Understand How Compilation Systems Work)
+  - 1.4 处理器读并解释存储在存储器中的指令 (Processors Read and Interpret Instructions Stored in Memory)
+    - 1.4.1 系统的硬件组成 (Hardware Organization of a System)
+    - 1.4.2 运行 Hello 程序 (Running the hello Program)
+  - 1.5 高速缓存至关重要 (Caches Matter)
+  - 1.6 存储设备形成层次结构 (Storage Devices Form a Hierarchy)
+  - 1.7 操作系统管理硬件 (The Operating System Manages the Hardware)
+    - 1.7.1 进程 (Processes)
+    - 1.7.2 线程 (Threads)
+    - 1.7.3 虚拟内存 (Virtual Memory)
+    - 1.7.4 文件 (Files)
+  - 1.9 并发和并行 (Concurrency and Parallelism)
+    - 1.9.1 线程级并发 (Thread-Level Concurrency)
+    - 1.9.2 指令级并行 (Instruction-Level Parallelism)
+    - 1.9.3 单指令、多数据并行 (Single-Instruction, Multiple-Data (SIMD) Parallelism)
+  - 1.10 计算机系统中抽象的重要性 (The Importance of Abstractions in Computer Systems)
+- **第2章：信息的表示和处理 (Representing and Manipulating Information)**
+  - 2.1 信息存储 (Information Storage)
+    - 2.1.1 十六进制表示法 (Hexadecimal Notation)
+    - 2.1.2 字 (Words)
+    - 2.1.3 数据大小 (Data Sizes)
+    - 2.1.4 寻址和字节顺序 (Addressing and Byte Ordering) (重点理解大端和小端)
+    - 2.1.7 C语言中的位级运算 (Bit-Level Operations in C)
+    - 2.1.8 C语言中的逻辑运算 (Logical Operations in C)
+    - 2.1.9 C语言中的移位运算 (Shift Operations in C)
+  - 2.2 整数表示 (Integer Representations)
+    - 2.2.1 整型数据类型 (Integral Data Types)
+    - 2.2.2 无符号编码 (Unsigned Encodings)
+    - 2.2.3 补码编码 (Two’s-Complement Encodings)
+    - 2.2.4 有符号数和无符号数之间的转换 (Conversions Between Signed and Unsigned)
+    - 2.2.5 C语言中的有符号数与无符号数 (Signed vs. Unsigned in C)
+    - 2.2.6 扩展一个数字的位表示 (Expanding the Bit Representation of a Number)
+    - 2.2.7 截断数字 (Truncating Numbers)
+    - 2.2.8 关于有符号数和无符号数的建议 (Advice on Signed vs. Unsigned)
+  - 2.3 整数运算 (Integer Arithmetic)
+    - 2.3.1 无符号加法 (Unsigned Addition)
+    - 2.3.2 补码加法 (Two’s-Complement Addition)
+    - 2.3.3 补码的非 (Two’s-Complement Negation)
+    - 2.3.4 无符号乘法 (Unsigned Multiplication)
+    - 2.3.5 补码乘法 (Two’s-Complement Multiplication)
+    - 2.3.6 乘以常数 (Multiplying by Constants)
+    - 2.3.7 除以2的幂 (Dividing by Powers of 2)
+    - 2.3.8 关于整数运算的最后思考 (Final Thoughts on Integer Arithmetic)
+  - 2.4 浮点数 (Floating Point)
+    - 2.4.1 二进制小数 (Fractional Binary Numbers)
+    - 2.4.2 IEEE浮点表示 (IEEE Floating-Point Representation)
+    - 2.4.3 数字示例 (Example Numbers)
+    - 2.4.4舍入 (Rounding)
+    - 2.4.5 浮点运算 (Floating-Point Operations)
+    - 2.4.6 C语言中的浮点数 (Floating Point in C)
+- **第3章：程序的机器级表示 (Machine-Level Representation of Programs)** (这一章极为重要)
+  - 3.1 历史观点 (A Historical Perspective)
+  - 3.2 程序编码 (Program Encodings)
+    - 3.2.1 机器级代码 (Machine-Level Code)
+    - 3.2.2 代码示例 (Code Examples)
+    - 3.2.3 关于格式的注解 (Notes on Formatting)
+  - 3.3 数据格式 (Data Formats)
+  - 3.4 访问信息 (Accessing Information)
+    - 3.4.1 操作数指示符 (Operand Specifiers)
+    - 3.4.2 数据传送指令 (Data Movement Instructions) (MOV类指令)
+    - 3.4.3 数据传送示例 (Data Movement Examples)
+    - 3.4.4 压入和弹出栈数据 (Pushing and Popping Stack Data)
+  - 3.5 算术和逻辑操作 (Arithmetic and Logical Operations)
+    - 3.5.1 加载有效地址 (Load Effective Address) (leaq指令)
+    - 3.5.2 一元和二元操作 (Unary and Binary Operations)
+    - 3.5.3 移位操作 (Shift Operations)
+    - 3.5.4 特殊的算术操作 (Special Arithmetic Operations)
+  - 3.6 控制 (Control) (理解汇编如何实现if/else, switch, loop)
+    - 3.6.1 条件码 (Condition Codes)
+    - 3.6.2 访问条件码 (Accessing the Condition Codes)
+    - 3.6.3 跳转指令及其编码 (Jump Instructions and their Encodings)
+    - 3.6.4 跳转指令的实现 (Implementing Conditional Branches with Jumps)
+    - 3.6.5 循环 (Loops) (do-while, while, for)
+    - 3.6.6 条件传送指令 (Conditional Move Instructions)
+    - 3.6.7 Switch语句 (Switch Statements)
+  - 3.7 过程 (Procedures) (函数调用栈帧结构是核心)
+    - 3.7.1 栈帧结构 (Stack Frame Structure)
+    - 3.7.2 转移控制 (Transferring Control) (call, ret)
+    - 3.7.3 寄存器使用惯例 (Register Usage Conventions)
+    - 3.7.4 过程示例 (Procedure Example)
+    - 3.7.5 递归过程 (Recursive Procedures)
+  - 3.8 数组分配和访问 (Array Allocation and Access)
+    - 3.8.1 基本原则 (Basic Principles)
+    - 3.8.2 指针运算 (Pointer Arithmetic)
+    - 3.8.3 嵌套的数组 (Nested Arrays)
+    - 3.8.4 定长数组 (Fixed-Size Arrays)
+    - 3.8.5 变长数组 (Variable-Size Arrays)
+  - 3.9 异构数据结构 (Heterogeneous Data Structures) (结构体和联合体)
+    - 3.9.1 结构 (Structures)
+    - 3.9.2 联合 (Unions)
+    - 3.9.3 数据对齐 (Data Alignment)
+  - 3.10 将控制流与数据流结合起来以避免过程调用开销 (Combining Control with Data Flow to Avoid Procedure Call Overhead) (如循环展开)
+  - 3.11 浮点代码 (Floating-Point Code) (了解即可，优先级稍低)
+  - 3.12 x86-64中的IA32兼容性 (IA32 Compatibility in x86-64) (了解即可)
+
+**第二部分：在系统中运行代码 (Running Code on a System)**
+
+- **第5章：优化程序性能 (Optimizing Program Performance)**
+  - 5.1 优化编译器的能力和局限性 (Capabilities and Limitations of Optimizing Compilers)
+  - 5.2 程序性能的表示 (Expressing Program Performance)
+  - 5.3 程序示例 (Program Example)
+  - 5.4 消除循环的低效率 (Eliminating Loop Inefficiencies) (代码移动)
+  - 5.5 减少过程调用 (Reducing Procedure Calls)
+  - 5.6 消除不必要的存储器引用 (Eliminating Unneeded Memory References) (使用临时变量)
+  - 5.7 理解现代处理器 (Understanding Modern Processors) (重点理解流水线和超标量)
+    - 5.7.1 整体操作 (Overall Operation)
+    - 5.7.2 功能单元的性能 (Functional Unit Performance)
+    - 5.7.3 处理器操作的抽象模型 (An Abstract Model of Processor Operation)
+  - 5.8 循环展开 (Loop Unrolling)
+  - 5.9 增强并行性 (Enhancing Parallelism)
+    - 5.9.1 多重累积 (Multiple Accumulators)
+    - 5.9.2 重新结合变换 (Reassociation Transformation)
+  - 5.11 理解存储器性能 (Understanding Memory Performance)
+    - 5.11.1 加载的延迟 (Load Latency)
+    - 5.11.2 存储操作的延迟 (Store Latency)
+  - 5.13 应用：性能改进技术 (Applying: Performance Improvement Techniques)
+  - 5.14 确认和消除性能瓶颈 (Identifying and Eliminating Performance Bottlenecks) (Amdahl定律)
+    - 5.14.1 程序剖析 (Program Profiling)
+    - 5.14.2 使用剖析程序来指导优化 (Using a Profiler to Guide Optimization)
+    - 5.14.3 Amdahl定律 (Amdahl’s Law)
+- **第6章：存储器层次结构 (The Memory Hierarchy)** (这一章极为重要)
+  - 6.1 存储技术 (Storage Technologies)
+    - 6.1.1 随机访问存储器 (Random-Access Memory) (SRAM, DRAM)
+    - 6.1.2 磁盘存储 (Disk Storage)
+    - 6.1.3 固态硬盘 (Solid-State Disks)
+    - 6.1.4 存储技术趋势 (Storage Technology Trends)
+  - 6.2 局部性 (Locality) (时间局部性和空间局部性是核心概念)
+    - 6.2.1 对程序数据引用的局部性 (Locality of References to Program Data)
+    - 6.2.2 取指令的局部性 (Locality of Instruction Fetches)
+    - 6.2.3 局部性小结 (Summary of Locality)
+  - 6.3 存储器层次结构 (The Memory Hierarchy)
+    - 6.3.1 存储器层次结构的中心思想 (Central Idea of a Memory Hierarchy)
+    - 6.3.2 存储器层次结构概念小结 (Summary of Memory Hierarchy Concepts)
+  - 6.4 高速缓存存储器 (Cache Memories) (核心中的核心)
+    - 6.4.1 通用高速缓存组织结构 (Generic Cache Memory Organization)
+    - 6.4.2 直接映射高速缓存 (Direct-Mapped Caches)
+    - 6.4.3 组相联高速缓存 (Set Associative Caches)
+    - 6.4.4 全相联高速缓存 (Fully Associative Caches)
+    - 6.4.5 有关写的问题 (Issues with Writes) (写直通，写回)
+    - 6.4.6 真实的高速缓存层次结构剖析 (Anatomy of a Real Cache Hierarchy)
+    - 6.4.7 高速缓存参数的性能影响 (Performance Impact of Cache Parameters)
+  - 6.5 编写高速缓存友好的代码 (Writing Cache-friendly Code)
+  - 6.6 综合：高速缓存对程序性能的影响 (Putting It Together: The Impact of Caches on Program Performance)
+    - 6.6.1 存储器山 (The Memory Mountain)
+    - 6.6.2 重新排列循环以提高空间局部性 (Rearranging Loops to Increase Spatial Locality)
+    - 6.6.3 在程序中利用局部性 (Exploiting Locality in Your Programs)
+
+**第三部分：程序间的交互和通信 (Interaction and Communication Between Programs)**
+
+- **第7章：链接 (Linking)** (理解链接过程对理解大型项目和解决链接错误至关重要)
+  - 7.1 编译器驱动程序 (Compiler Drivers)
+  - 7.2 静态链接 (Static Linking)
+  - 7.3 目标文件 (Object Files)
+  - 7.4 可重定位目标文件 (Relocatable Object Files)
+  - 7.5 符号和符号表 (Symbols and Symbol Tables)
+  - 7.6 符号解析 (Symbol Resolution) (理解符号如何被解析是重点)
+    - 7.6.1 链接器如何解析多重定义的全局符号 (How Linkers Resolve Multiply Defined Global Symbols)
+    - 7.6.2 与静态库链接 (Linking with Static Libraries)
+    - 7.6.3 链接器如何使用静态库来解析引用 (How Linkers Use Static Libraries to Resolve References)
+  - 7.7 重定位 (Relocation)
+    - 7.7.1 重定位条目 (Relocation Entries)
+    - 7.7.2 重定位符号引用 (Relocating Symbol References)
+  - 7.8 可执行目标文件 (Executable Object Files)
+  - 7.9 加载可执行目标文件 (Loading Executable Object Files)
+  - 7.10 动态链接共享库 (Dynamic Linking with Shared Libraries)
+  - 7.11 从应用程序中加载和链接共享库 (Loading and Linking Shared Libraries from Applications)
+  - 7.12 位置无关代码 (Position-Independent Code (PIC))
+  - 7.13 处理目标文件的工具 (Tools for Manipulating Object Files)
+- **第8章：异常控制流 (Exceptional Control Flow)** (理解ECF是理解操作系统和高级程序行为的基础)
+  - 8.1 异常 (Exceptions)
+    - 8.1.1 异常处理 (Exception Handling)
+    - 8.1.2 异常的类别 (Classes of Exceptions) (中断、陷阱、故障、终止)
+    - 8.1.3 Linux/x86-64系统中的异常 (Exceptions in Linux/x86-64 Systems)
+  - 8.2 进程 (Processes)
+    - 8.2.1 逻辑控制流 (Logical Control Flow)
+    - 8.2.2 并发流 (Concurrent Flows)
+    - 8.2.3 用户模式和内核模式 (User Mode and Kernel Mode)
+    - 8.2.4 上下文切换 (Context Switches)
+  - 8.3 系统调用错误处理 (System Call Error Handling)
+  - 8.4 进程控制 (Process Control)
+    - 8.4.1 获取进程ID (Obtaining Process IDs)
+    - 8.4.2 创建和终止进程 (Creating and Terminating Processes) (fork, exit, wait, waitpid)
+    - 8.4.3 回收子进程 (Reaping Child Processes)
+    - 8.4.4 让进程休眠 (Putting Processes to Sleep) (sleep, pause)
+    - 8.4.5 加载并运行程序 (Loading and Running Programs) (execve)
+    - 8.4.6 利用fork和execve运行程序 (Using fork and execve to Run Programs)
+  - 8.5 信号 (Signals)
+    - 8.5.1 信号术语 (Signal Terminology)
+    - 8.5.2 发送信号 (Sending Signals) (kill, alarm)
+    - 8.5.3 接收信号 (Receiving Signals) (signal函数)
+    - 8.5.4 信号处理问题 (Signal Handling Issues) (避免竞争条件)
+    - 8.5.5 可移植的信号处理 (Portable Signal Handling)
+  - 8.6 非本地跳转 (Nonlocal Jumps) (setjmp, longjmp，了解即可)
+  - 8.7 操作进程的工具 (Tools for Manipulating Processes)
+- **第9章：虚拟内存 (Virtual Memory)** (这一章极为重要)
+  - 9.1 物理和虚拟寻址 (Physical and Virtual Addressing)
+  - 9.2 地址空间 (Address Spaces)
+  - 9.3 虚拟内存作为缓存的工具 (VM as a Tool for Caching) (理解VM如何使用DRAM作为SRAM的缓存)
+    - 9.3.1 为什么使用虚拟内存？ (Why Virtual Memory?)
+    - 9.3.2 DRAM缓存的组织结构 (Organization of a DRAM Cache)
+    - 9.3.3 页表 (Page Tables)
+    - 9.3.4 页命中 (Page Hits)
+    - 9.3.5 缺页 (Page Faults)
+    - 9.3.6 分配页面 (Allocating Pages)
+    - 9.3.7 又是局部性 (Locality to the Rescue Again)
+  - 9.4 虚拟内存作为内存管理的工具 (VM as a Tool for Memory Management) (每个进程独立的地址空间)
+    - 9.4.1 简化链接 (Simplifying Linking)
+    - 9.4.2 简化共享 (Simplifying Sharing)
+    - 9.4.3 简化内存分配 (Simplifying Memory Allocation)
+    - 9.4.4 简化加载 (Simplifying Loading)
+  - 9.5 虚拟内存作为内存保护的工具 (VM as a Tool for Memory Protection)
+  - 9.6 地址翻译 (Address Translation) (核心机制，理解MMU和页表如何工作)
+    - 9.6.1 地址翻译概览 (Overview of Address Translation)
+    - 9.6.2 集成高速缓存和虚拟内存 (Integrating Caches and VM)
+    - 9.6.3 利用TLB加速地址翻译 (Speeding up Address Translation with a TLB)
+    - 9.6.4 多级页表 (Multi-Level Page Tables)
+    - 9.6.5 端到端的地址翻译：一个案例研究 (End-to-end Address Translation: A Case Study)
+  - 9.7 案例研究：Intel Core i7内存系统 (Case Study: The Intel Core i7 Memory System)
+    - 9.7.1 Core i7地址翻译 (Core i7 Address Translation)
+    - 9.7.2 Core i7页表条目 (Core i7 Page Table Entries)
+    - 9.7.3 Core i7 TLB 操作 (Core i7 TLB Operation)
+    - 9.7.4 Core i7 缓存操作 (Core i7 Cache Operation)
+  - 9.8 Linux虚拟内存系统 (Linux Virtual Memory System)
+    - 9.8.1 Linux虚拟内存区域 (Linux Virtual Memory Areas)
+    - 9.8.2 Linux缺页异常处理 (Linux Page Fault Handling)
+  - 9.9 内存映射 (Memory Mapping) (mmap函数是重点)
+    - 9.9.1 再谈共享对象 (Shared Objects Revisited)
+    - 9.9.2 fork函数如何工作 (How the fork Function Works)
+    - 9.9.3 execve函数如何工作 (How the execve Function Works)
+    - 9.9.4 使用mmap函数的用户级内存映射 (User-Level Memory Mapping with the mmap Function)
+  - 9.10 动态内存分配 (Dynamic Memory Allocation) (理解malloc和free的内部机制)
+    - 9.10.1 malloc和free函数 (The malloc and free Functions)
+    - 9.10.2 为什么要使用动态内存分配 (Why Dynamic Memory Allocation?)
+    - 9.10.3 分配器的需求和目标 (Allocator Requirements and Goals)
+    - 9.10.4 碎片 (Fragmentation) (内部碎片和外部碎片)
+    - 9.10.5 实现问题 (Implementation Issues)
+    - 9.10.6 隐式空闲链表 (Implicit Free Lists)
+    - 9.10.7 放置已分配的块 (Placing Allocated Blocks)
+    - 9.10.8 分割空闲块 (Splitting Free Blocks)
+    - 9.10.9 获取额外的堆内存 (Getting Additional Heap Memory)
+    - 9.10.10 合并空闲块 (Coalescing Free Blocks)
+    - 9.10.11 带边界标记的合并 (Coalescing with Boundary Tags)
+    - 9.10.13 显式空闲链表 (Explicit Free Lists)
+    - 9.10.14 分离的空闲链表 (Segregated Free Lists)
+  - 9.11 C程序中常见的与内存有关的错误 (Common Memory-Related Bugs in C Programs)
+    - 9.11.1 解引用坏指针 (Dereferencing Bad Pointers)
+    - 9.11.2 读未初始化的内存 (Reading Uninitialized Memory)
+    - 9.11.3 允许栈缓冲区溢出 (Allowing Stack Buffer Overflows)
+    - 9.11.4 假设指针和它们指向的对象是相同大小的 (Assuming that Pointers and the Objects They Point to Are the Same Size)
+    - 9.11.5 造成错位错误 (Making Off-by-One Errors)
+    - 9.11.6 引用指针，而不是它所指向的对象 (Referencing a Pointer Instead of the Object It Points To)
+    - 9.11.7 误解指针运算 (Misunderstanding Pointer Arithmetic)
+    - 9.11.8 引用不存在的变量 (Referencing Nonexistent Variables)
+    - 9.11.9 引用空闲堆块中的数据 (Referencing Data in Free Heap Blocks)
+    - 9.11.10 引起内存泄漏 (Introducing Memory Leaks)
+
+**第四部分：并发编程 (Concurrent Programming)**
+
+- 第12章：并发编程 (Concurrent Programming)
+
+   (对现代多核编程非常重要)
+
+  - 12.1 基于进程的并发编程 (Process-Based Concurrent Programming)
+  - 12.2 基于I/O多路复用的并发编程 (Event-Based Concurrent Programming) (select, epoll)
+    - 12.2.1 基本思想 (Basic Idea)
+    - 12.2.2 I/O多路复用 (I/O Multiplexing)
+    - 12.2.3 基于I/O多路复用的并发事件驱动服务器 (A Concurrent Event-Driven Server Based on I/O Multiplexing)
+    - 12.2.5 优缺点 (Pros and Cons)
+  - 12.3 基于线程的并发编程 (Thread-Based Concurrent Programming)
+    - 12.3.1 线程执行模型 (Thread Execution Model)
+    - 12.3.2 Posix线程 (Posix Threads)
+    - 12.3.3 创建线程 (Creating Threads)
+    - 12.3.4 终止线程 (Terminating Threads)
+    - 12.3.5 回收已终止线程的资源 (Reaping Terminated Threads)
+    - 12.3.6 分离线程 (Detaching Threads)
+    - 12.3.7 初始化线程 (Initializing Threads)
+    - 12.3.8 基于线程的并发服务器 (A Thread-Based Concurrent Server)
+  - 12.4 多线程程序中的共享变量 (Shared Variables in Multithreaded Programs)
+    - 12.4.1 线程内存模型 (Threads Memory Model)
+    - 12.4.2 将变量映射到内存 (Mapping Variables to Memory)
+    - 12.4.3 共享变量 (Shared Variables)
+  - 12.5 用信号量同步线程 (Synchronizing Threads with Semaphores) (理解信号量PV操作)
+    - 12.5.1 进度图 (Progress Graphs)
+    - 12.5.2 信号量 (Semaphores)
+    - 12.5.3 使用信号量来实现互斥 (Using Semaphores for Mutual Exclusion)
+    - 12.5.4 利用信号量来调度共享资源 (Using Semaphores to Schedule Shared Resources) (生产者-消费者问题，读者-写者问题)
+    - 12.5.5 基于预线程化的并发服务器 (A Prethreaded Concurrent Server)
+  - 12.6 使用线程提高并行性 (Using Threads for Parallelism)
+  - 12.7 其他并发问题 (Other Concurrency Issues) (线程安全，可重入性，死锁)
+    - 12.7.1 线程安全 (Thread Safety)
+    - 12.7.2 可重入性 (Reentrancy)
+    - 12.7.3 在线程化的程序中使用已存在的库函数 (Using Existing Library Functions in Threaded Programs)
+    - 12.7.4 竞争 (Races)
+    - 12.7.5 死锁 (Deadlocks)
+
+**其他章节的重要性：**
+
+- **第4章：处理器体系结构 (Processor Architecture)**：如果你对计算机组成原理有浓厚兴趣，或者想深入理解CPU如何执行指令，这一章值得细读。但对于大多数应用层开发者，了解第3章的机器级表示可能已经足够。
+
+- 第10章：系统级I/O (System-Level I/O)
+
+  ：对于网络编程和系统编程非常重要，特别是文件I/O和Unix I/O的部分。
+
+  - 10.1 Unix I/O (Unix I/O)
+  - 10.2 打开和关闭文件 (Opening and Closing Files) (open, close)
+  - 10.3 读和写文件 (Reading and Writing Files) (read, write)
+  - 10.4 用RIO包健壮地读写 (Robust Reading and Writing with the RIO Package)
+  - 10.5 读取文件元数据 (Reading File Metadata)
+  - 10.6 共享文件 (Sharing Files)
+  - 10.7 I/O重定向 (I/O Redirection)
+  - 10.8 标准I/O (Standard I/O)
+  - 10.9 综合：我应该使用哪些I/O函数？ (Putting It Together: Which I/O Functions Should I Use?)
+
+- 第11章：网络编程 (Network Programming)
+
+  ：如果你要进行网络相关的开发，这一章是必读的。
+
+  - 11.1 客户端-服务器编程模型 (The Client-Server Programming Model)
+  - 11.2 网络 (Networks)
+  - 11.3 全球IP因特网 (The Global IP Internet)
+    - 11.3.1 IP地址 (IP Addresses)
+    - 11.3.2 因特网域名 (Internet Domain Names)
+    - 11.3.3 因特网连接 (Internet Connections)
+  - 11.4 Sockets接口 (The Sockets Interface) (socket, connect, bind, listen, accept是核心)
+    - 11.4.1 socket地址结构 (Socket Address Structures)
+    - 11.4.2 socket函数 (The socket Function)
+    - 11.4.3 connect函数 (The connect Function)
+    - 11.4.4 bind函数 (The bind Function)
+    - 11.4.5 listen函数 (The listen Function)
+    - 11.4.6 accept函数 (The accept Function)
+    - 11.4.7 主机和服务的转换 (Host and Service Conversion)
+    - 11.4.8 套接字接口的辅助函数 (Helper Functions for the Sockets Interface)
+    - 11.4.9 示例：Echo客户端和服务器 (Example Echo Client and Server)
+  - 11.5 Web服务器 (Web Servers)
+    - 11.5.1 Web基础 (Web Basics)
+    - 11.5.2 Web内容 (Web Content)
+    - 11.5.3 HTTP事务 (HTTP Transactions)
+    - 11.5.4 服务动态内容 (Serving Dynamic Content)
+
+**总结一下：**
+
+1. 绝对核心，必须精读并做实验：
+   - 第2章 (信息表示)
+   - 第3章 (机器级表示)
+   - 第5章 (程序性能优化基础)
+   - 第6章 (存储器层次结构)
+   - 第8章 (异常控制流)
+   - 第9章 (虚拟内存)
+2. 非常重要，强烈建议精读：
+   - 第1章 (系统漫游，建立整体概念)
+   - 第7章 (链接)
+   - 第12章 (并发编程)
+3. 根据你的方向和兴趣选择性精读或作为后续学习：
+   - 第4章 (处理器体系结构)
+   - 第10章 (系统级I/O)
+   - 第11章 (网络编程)
+
+请记住，即使是“不太重要”的章节，也包含了有价值的信息。CSAPP的魅力在于它的全面性和深度。祝你学习愉快！
+
 # 计算机系统漫游
 
 ## 程序的编译过程
@@ -246,11 +624,28 @@ cache分为L1、L2、L3，其中1-2是有一种静态随机访问存储器（SRA
 >
 > ![image-20250505110650523](assets/image-20250505110650523.png)
 
+#### 加法逆元（异或运算）
+
+例如**任意整数x都有一个加法逆元“-x”，使x + （-x）= 0**。而在布尔代数中，我们**用"^"，也就是异或来表示加法逆元**
+
+**如x ^ x = 0**
+
+满足以下性质的一个数**-~w~^u/t^x**，称之为加法逆元：
+
+**(x + -~w~^u/t^x) % 2^w^ == 0**
+
+
+
+**异或运算的性质**：
+
+- 交换律：调整运算顺序不影响结果。如x ^ (x ^ y) == (x ^ x) ^ y == 0 ^ y == y
+- 异或操作针对每个二进制位，结果是一个完整的二进制数。如4位的运算 0 ^ y == 0000 ^ xxxx == xxxx == y
+
 ## 整数表示
 
 包括有无符号数的char、int、long
 
-> 本章中的表示意思：
+> 本章中用到的缩写的意思：
 >
 > 1. T——补码
 > 2. B——原码
@@ -379,18 +774,61 @@ C语言的运算中，**一个有符号数与一个无符号数进行运算，�
 
 若两个4位的数值相加，其值最大会有30，也就是需要用5位来表示，这就导致了溢出现象。即w位的数字x、y时，x + y 结果实际为：
 
-- x + y   ——x + y < 2^w^（正常情况）
-- **x + y - 2^w^ ——2^w^ < x + y < 2^w+1^**（溢出）
+- x + y   ——x + y < 2^w^（**正常情况**）
+- **x + y - 2^w^ ——2^w^ < x + y < 2^w+1^**（**溢出**）
+
+![image-20250519160620493](assets/image-20250519160620493.png)
 
 例如，9 + 12 = 21，此时需要用5位来表示，那么丢掉最高位，结果为5，也就是 9 + 12 最终的值为5（当然，是在只有4位表示的情况下）
 
-> 由此可得：没溢出时，x + y >= x
+> 由此可得：**没溢出时满足条件：x + y >= x**
 
-### 补码加法
+### 无符号数的加法逆元
+
+![image-20250519162731504](assets/image-20250519162731504.png)
+
+### 补码加法（运算溢出）
 
 无符号数就只有正溢出这个概念，轮到补码这，就可能出现正溢出、负溢出的概念了。
 
-![image-20250517173601654](assets/image-20250517173601654.png)
+![image-20250519142244227](assets/image-20250519142244227.png)
+
+![image-20250519143422791](assets/image-20250519143422791.png)
+
+案例如下图所示：
+
+![image-20250519143443366](assets/image-20250519143443366.png)
+
+**在代码中检测补码加法是否溢出的情况：**
+
+```cpp
+// 如果参数x和y相加不会产生溢出，这这个函数返回1
+int tadd_ok(int x, int y) {
+    int s = x + y;
+    if (x > 0 && y > 0 && s <= 0) {
+        return 0; // 正数相加溢出
+    } else if (x < 0 && y < 0 && s >= 0) {
+        return 2; // 负数相加溢出
+    }
+    return 1;
+}
+```
+
+### 补码的加法逆元
+
+也称之为补码的非
+
+![image-20250519163445699](assets/image-20250519163445699.png)
+
+例如：
+
+![image-20250519170341492](assets/image-20250519170341492.png)
+
+
+
+
+
+
 
 
 
