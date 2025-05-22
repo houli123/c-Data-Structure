@@ -47,11 +47,24 @@ void slidingWindow(string s) {
 
 滑动窗口还可以固定大小的方式，就适用于这种子串、子排列相同长度的情况下
 
+### [46. Permutations](https://leetcode.cn/problems/permutations/)
 
+基本抄了官方的解了，第一次做仅能想到每一次要不断通过递归，确定一个元素，才能实现所有的情况可能，但是没想出具体如何实现递归，直接看了题解了
 
+回溯算法的框架：
 
-
-
+```
+result = []
+def backtrack(路径, 选择列表):
+    if 满足结束条件:
+        result.add(路径)
+        return
+    
+    for 选择 in 选择列表:
+        做选择
+        backtrack(路径, 选择列表)
+        撤销选择
+```
 
 
 
