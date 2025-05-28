@@ -1,3 +1,27 @@
+
+
+# 洛谷说明
+
+各个评测状态
+
+**AC**：Accept，程序通过。
+
+**WA**：Wrong Answer，答案错误。
+
+**CE**：Compile Error，**编译错误。**
+
+**PC**：Partially Correct，部分正确。
+
+**RE**：Runtime Error，运行时错误。
+
+**TLE**：Time Limit Exceeded，超出时间限制。
+
+**MLE**：Memory Limit Exceeded，超出内存限制。
+
+**OLE**：Output Limit Exceeded，输出超过限制。
+
+**UKE**：Unknown Error，出现未知错误。
+
 # 2025
 
 ## 5月
