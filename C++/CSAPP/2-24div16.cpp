@@ -10,7 +10,7 @@ int div16(int x) {
 }
 
 int main() {
-    int num = 99;
+    int num = -99;
     cout << "Division of " << num << " by 16 is: " << div16(num) << endl;
     return 0;
 }
