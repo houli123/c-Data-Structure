@@ -92,7 +92,43 @@ def backtrack(路径, 选择列表):
 
 
 
+## 6月
 
+### [25. Reverse Nodes in k-Group](https://leetcode.cn/problems/reverse-nodes-in-k-group/)
+
+尝试着自己用递归解答了链表逆序问题
+
+```cpp
+class Solution {
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        // 尝试用递归思考去解决：本任务是要以按照k个节点为一组来为每一组进行逆序，而对于达不到k个元素的就不需要逆序，那么算法可以优化成：先对一组去逆序，接着在对后续的元素按照k个节点为一组的方式去调用递归。我觉得难点在于递归前后传递这些，以及应该从哪里开始之类的
+        // 先判断边界情况
+        if (!head || k == 1)    return head;
+        
+        ListNode *dummyHead = new ListNode(0, head);
+        for (int i = 0; i < k && dummyHead; i++) dummyHead = dummyHead->next;
+        if (!dummyHead) return head;  // 如果达不到k个，则原顺序返回
+
+        ListNode *cur, *pre, *start, *t;
+        pre = nullptr;
+        start = head;
+        cur = start;
+
+        for (int i = 0; i < k && cur; i++) {
+            t = cur->next;
+            cur->next = pre;
+            pre = cur;
+            cur = t;
+        }
+
+        // pre = start;
+        start->next = reverseKGroup(cur, k);
+
+        return pre;
+    }
+};
+```
 
 
 
