@@ -198,7 +198,13 @@ int negate(int x) {
  */
 int isAsciiDigit(int x) {
   // 如何表示范围呢？不用大于小于的话
-  return 2;
+  // Assume x is 0xMN
+  // check1: check whether or not the M is 3
+  // check1: check whether or not the N is between 0 and 9
+  int first = !(0x30 ^ (x & 0x30));
+  // I can use 0xF minus 
+  int second = (0xF & x) + (~0x5);
+  return ;
 }
 /* 
  * conditional - same as x ? y : z 

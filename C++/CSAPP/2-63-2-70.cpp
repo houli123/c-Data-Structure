@@ -55,6 +55,7 @@ int main() {
     cout << (!0) << endl;
     cout << (0xffffffff >> 1) << endl;
     cout << (~0u >> 1) << endl;
-    cout << hex << !(0xAAAAAAAA ^ (0xFFFFFFFD & 0xAAAAAAAA)) << endl;
+    cout << !(0xAAAAAAAA ^ (0xFFFFFFFD & 0xAAAAAAAA)) << endl;
+    cout << ~0x8 << endl; 
     return 0;
 }

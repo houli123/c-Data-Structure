@@ -7,11 +7,9 @@ int main() {
     unordered_map<int, int> hashmap{};  // 类似与python中的字典
     unordered_map<int, string> hashmap2{{1, "apple"}, {2, "ggbond"}}; 
 
-    
-
-    cout << hashmap.empty() << endl;  // 判断hashmap是否为空，返回true或false
-    hashmap[1] = 2;  // 初始化一个元素
+    // 判断hashmap是否为空，返回true或false
     cout << hashmap.empty() << endl;  
+    hashmap[1] = 2;  // 初始化一个元素
 
     if (hashmap.contains(1)) {  // 判断hashmap中是否存在key为1的元素，C++20新特性
         cout << "hashmap[1] = " << hashmap[1] << endl;
@@ -25,6 +23,8 @@ int main() {
     } else {
         cout << "hashmap[1] not found" << endl;
     }
+    // 还可以用count的方式
+    cout << "hashmap[1] count = " << hashmap.count(1) << endl;  
 
     // 获取指定键对应的值，若不存在会返回默认构造的值（int类型为0，string类型为空字符串）
     cout << hashmap[2] << endl;  // 输出0
@@ -34,10 +34,19 @@ int main() {
     hashmap.erase(1);  // 删除key为1的元素
 
     cout << hashmap.size() << endl;  
-    // 遍历hashmap  
+
+    // 哈希表的三种插入方式
+    hashmap.insert({9, 3});  // 使用insert方法插入，如果已存在则不会插入
+    hashmap[3] = 4;  // 使用下标操作符插入
+    hashmap.emplace(4, 5);  // 哈希表没有emplace_back
+
+    // 遍历hashmap
     for (auto &p: hashmap) {
         cout << p.first << ':' << p.second << endl;
     }
+
+    // 清空哈希表，也可以初始化哈希表的方式
+    hashmap.clear();  
 
     return 0;
 }
