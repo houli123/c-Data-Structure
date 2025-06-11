@@ -28,6 +28,9 @@ int main(){
     // 删除索引处的元素
     nums.erase(nums.begin() + 1);
 
+    // 查看数组大小
+    cout << "当前数组大小: " << nums.size() << endl;
+
     // 交换数组元素
     swap(nums[0], nums[1]);
 
