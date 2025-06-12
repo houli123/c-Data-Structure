@@ -56,6 +56,6 @@ int main() {
     cout << (0xffffffff >> 1) << endl;
     cout << (~0u >> 1) << endl;
     cout << !(0xAAAAAAAA ^ (0xFFFFFFFD & 0xAAAAAAAA)) << endl;
-    cout << ~0x8 << endl; 
+    cout << (~(-1)) << endl; 
     return 0;
 }

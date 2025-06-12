@@ -201,10 +201,10 @@ int isAsciiDigit(int x) {
   // Assume x is 0xMN
   // check1: check whether or not the M is 3
   // check1: check whether or not the N is between 0 and 9
-  int first = !(0x30 ^ (x & 0x30));
+  int first = 0x30 ^ (x & 0x30);  // 相同则为0
   // I can use 0xF minus 
-  int second = (0xF & x) + (~0x5);
-  return ;
+  int second = (0x8 & x) >> 3 & ((0x2 & x) >> 1 | (0x4 & x) >> 2);  
+  return !(first | second);
 }
 /* 
  * conditional - same as x ? y : z 
@@ -214,7 +214,14 @@ int isAsciiDigit(int x) {
  *   Rating: 3
  */
 int conditional(int x, int y, int z) {
-  return 2;
+//   思路：
+// 用倒推的思路，返回值二选一，return结果一定是用 | 连接
+// 而一个返回y，一个返回z，返回原值可以用补码全1（即-1）和&来实现，返回0可用0和&来实现
+// 定义中间量condition=-1或0，condition需要与x相关联，则可以用!!x和取相反数的操作来实现
+// 当 x!=0时，!!x=1, condition=~(!!x)+1=-1
+// 当 x= 0时，!!x=0, condition=~(!!x)+1= 0
+  int condition = ~(!!x) + 1;
+  return condition & y | ~condition & z;
 }
 /* 
  * isLessOrEqual - if x <= y  then return 1, else return 0 
@@ -224,7 +231,11 @@ int conditional(int x, int y, int z) {
  *   Rating: 3
  */
 int isLessOrEqual(int x, int y) {
-  return 2;
+  // 思路是用减法，x - y，之后再看符号位
+  int condition = x + (~y + 1);
+  int top = condition >> 31; // 记录最高位，1表示y大，0表示x大
+  int retop = ~top + 1;  // 取它的相反数，此时操作就如同上一题的return了。-1时就y更大返回y
+  return ~top & x | top & y;
 }
 //4
 /* 
@@ -236,7 +247,12 @@ int isLessOrEqual(int x, int y) {
  *   Rating: 4 
  */
 int logicalNeg(int x) {
-  return 2;
+//   思路：
+// 运用0的性质，0的相反数还是0，按位或得到的值还是0（最高位也为0）
+// 其他值与相反数按位或得到的最高位为1（值与相反数总有一个是负数）
+  int first = x >> 31;
+  int two = (~x) >> 31;
+  return first | two;
 }
 /* howManyBits - return the minimum number of bits required to represent x in
  *             two's complement
