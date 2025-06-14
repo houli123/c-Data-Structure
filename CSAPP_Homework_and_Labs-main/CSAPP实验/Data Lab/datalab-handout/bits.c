@@ -330,7 +330,6 @@ unsigned floatScale2(unsigned uf) {
   // 如果指数+1之后，指数为255则返回原符号无穷大，否则返回指数+1之后的原符号数。
   if (exp == 255) return 0x7f800000 | sign;
   return (exp << 23) | (uf & 0x807fffff);
-  return 2;
 }
 /* 
  * floatFloat2Int - Return bit-level equivalent of expression (int) f
