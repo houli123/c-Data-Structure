@@ -163,7 +163,9 @@ int tmin(void) {
  *   Rating: 1
  */
 int isTmax(int x) {
-  return !(x ^ (~0u >> 1));
+  // 左边是判断是否是TMAX，右边是排除11111..的情况
+  // !!是一个格式化的操作，对于非0值会返回1，而0值就返回0
+  return (!(~(x + 1) ^ x) & !!((x + 1) ^ 0x0));
 }
 /* 
  * allOddBits - return 1 if all odd-numbered bits in word set to 1
@@ -174,7 +176,9 @@ int isTmax(int x) {
  *   Rating: 2
  */
 int allOddBits(int x) {
-  return !(0xAAAAAAAA ^ (x & 0xAAAAAAAA));
+  int one = 0xAA, two = one | (one << 8), three = two | (two << 8), mask = three | (three << 8);
+  return !(mask ^ (x & mask));
+//  return !(0xAAAAAAAA ^ (x & 0xAAAAAAAA));
 }
 /* 
  * negate - return -x 
@@ -201,10 +205,13 @@ int isAsciiDigit(int x) {
   // Assume x is 0xMN
   // check1: check whether or not the M is 3
   // check1: check whether or not the N is between 0 and 9
-  int first = 0x30 ^ (x & 0x30);  // 相同则为0
-  // I can use 0xF minus 
-  int second = (0x8 & x) >> 3 & ((0x2 & x) >> 1 | (0x4 & x) >> 2);  
-  return !(first | second);
+  // 还需要使高26位清除掉
+  int zero = x >> 6;
+  int first = 0x30 ^ (x & 0xf0);  // 相同则为0
+  // I can use 0xF minus
+  int second = (x & 0xf);  // 截取低4位
+  int minus = (second + ~0x9) >> 31;   // 该第四位满足条件：second - 'a' < 0成立，否则就不符合
+  return (!zero & !first & !!minus);
 }
 /* 
  * conditional - same as x ? y : z 
@@ -221,7 +228,8 @@ int conditional(int x, int y, int z) {
 // 当 x!=0时，!!x=1, condition=~(!!x)+1=-1
 // 当 x= 0时，!!x=0, condition=~(!!x)+1= 0
   int condition = ~(!!x) + 1;
-  return condition & y | ~condition & z;
+  // condition = (!!x << 31) >> 31  //也可以这样，如果是1左移后再右移会触发算数右移，1会填充左边，最后的结果是-1；0的话最终结果是0，和上一个式子等价
+  return (condition & y) | (~condition & z);
 }
 /* 
  * isLessOrEqual - if x <= y  then return 1, else return 0 
@@ -231,11 +239,10 @@ int conditional(int x, int y, int z) {
  *   Rating: 3
  */
 int isLessOrEqual(int x, int y) {
-  // 思路是用减法，x - y，之后再看符号位
-  int condition = x + (~y + 1);
-  int top = condition >> 31; // 记录最高位，1表示y大，0表示x大
-  int retop = ~top + 1;  // 取它的相反数，此时操作就如同上一题的return了。-1时就y更大返回y
-  return ~top & x | top & y;
+  // 思路是用减法，y - x，之后再看符号位，符号位0 表示正值，也就是返回1；符号位1表示负值，返回0
+  int condition = y + (~x + 1);
+  int top = condition >> 31; // 记录最高位，0表示y大与等于，返回1；1表示x大，返回0
+  return !top;	
 }
 //4
 /* 
@@ -249,10 +256,10 @@ int isLessOrEqual(int x, int y) {
 int logicalNeg(int x) {
 //   思路：
 // 运用0的性质，0的相反数还是0，按位或得到的值还是0（最高位也为0）
-// 其他值与相反数按位或得到的最高位为1（值与相反数总有一个是负数）
+// 其他值与相反数按位或得到的最高位为1（值与相反数总有一个是负数），但如果右移后就是-1
   int first = x >> 31;
-  int two = (~x) >> 31;
-  return first | two;
+  int two = (~x + 1) >> 31;  // 如果符号位为0，那这里会触发算数右移，结果是-1
+  return 1 + (first | two);  // 加1是为了使原本的值域【-1，0】转变为【0，1】，才能符合题目
 }
 // 使用补码时最少需要多少比特位
 /* howManyBits - return the minimum number of bits required to represent x in
@@ -321,15 +328,24 @@ unsigned floatScale2(unsigned uf) {
   int exp = (uf & 0x7f800000) >> 23;  // 尾数有23位
   int sign = uf & (1 << 31);
   int frac = uf & 0x7fffff;
+  // 先处理一些特殊的情况
+
+  // 0
+  if (frac == 0 && exp == 0)
+    return uf;
+
+  // 非规格化
   if (exp == 0)
-    // << 1 表示乘2，正是题目要求的
-    return exp << 1 | sign;
+    // << 1 表示乘2，正是题目要求的2*f
+    return frac << 1 | sign;
+
   // 无穷大直接返回
-  if (exp == 255) return uf;
-  exp++;
+  if (exp == 0xff) return uf;
+
+  // 规格化的情况
+  exp++;  // 这里是通过指数加1的方式来实现*2的效果
   // 如果指数+1之后，指数为255则返回原符号无穷大，否则返回指数+1之后的原符号数。
-  if (exp == 255) return 0x7f800000 | sign;
-  return (exp << 23) | (uf & 0x807fffff);
+  return sign | exp << 23 | frac;
 }
 /* 
  * floatFloat2Int - Return bit-level equivalent of expression (int) f
@@ -344,7 +360,38 @@ unsigned floatScale2(unsigned uf) {
  *   Rating: 4
  */
 int floatFloat2Int(unsigned uf) {
-  return 2;
+  unsigned frac = uf & 0x7fffff;
+  unsigned exp = (uf >> 23) & 0xff;
+  unsigned sign = uf & (1 << 31);
+
+  // 0，包括非规格化的情况
+  if (exp == 0)
+	return 0;
+  // 无穷大
+  else if (exp == 0xff)
+  	return 1 << 31;
+  // 规格化的情况
+  // 阶码E的计算
+  int E = exp + ~(126); 
+  frac = frac | 1 << 23;
+
+  // 判断超出范围的情况
+  if (E > 31)
+	return 1 << 31;  // 这就是题目要求的0x80000000u
+  // 表示无穷小			   
+  else if (E < 0)
+	return 0;
+
+  // M * 2^E
+  if (E >= 23) // 超过frac所能表示的位数
+	frac <<= (E - 23);
+  else
+	frac >>= (23 - E);
+
+  // 判断符号位
+  if (!!sign) // 负值
+	return  ~frac + 1;
+  return frac;
 }
 /* 
  * floatPower2 - Return bit-level equivalent of the expression 2.0^x
@@ -360,5 +407,24 @@ int floatFloat2Int(unsigned uf) {
  *   Rating: 4
  */
 unsigned floatPower2(int x) {
+    // 这里的x应该是E，所以x = exp - bias
+    // x的范围：(-126-23) - 127+
+    // denormalize：阶码全为0，此时x<=-126，frac可以是最小的-2^23，也可以是最大的2^22 + 2^21 + 2^20 .. + 2^0
+    // 最小的情况
+    if (x <-149)
+	    return 0;
+    // 因为有2^0所以取最大的阶数也是2^-126
+    else if (x < -126){
+    	    int exp = x + 126;
+	    return 1 << (23 + exp);
+    }
+
+    // normalize	   
+    else if (x <= 127) {
+	    int exp = x + 127;
+	    return exp << 23;
+    }
+    else  //无穷大
+	    return 0xff << 23;
     return 2;
 }
