@@ -1,1 +1,0 @@
-主要也就是参考书上的思路，在check_clients调用doit即可
