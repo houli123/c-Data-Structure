@@ -292,7 +292,11 @@ def backtrack(路径, 选择列表):
 
     通过整个字符串逆序，在对左右两侧分别逆序即可
 
-26. 1
+26. [28. Find the Index of the First Occurrence in a String](https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/)
+
+    1. 方法一：先判断needle子串的首位元素是否在haystack中符合，如果符合，再逐个判断，符合才返回
+    2. 方法二：优化暴力匹配
+    3. 方法三：kmp1，统一减一的实现方法，next表从 -1 开始
 
 27. 
 
