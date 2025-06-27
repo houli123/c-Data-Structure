@@ -22,8 +22,6 @@
 
 **UKE**：Unknown Error，出现未知错误。
 
-<img src="https://picture-bed-1352320518.cos.ap-guangzhou.myqcloud.com/%E8%BD%AF%E8%80%83-assets/20250624195604733.jpg"/>
-
 # 2025
 
 ## 5月
@@ -298,7 +296,11 @@ def backtrack(路径, 选择列表):
     2. 方法二：优化暴力匹配
     3. 方法三：kmp1，统一减一的实现方法，next表从 -1 开始
 
-27. 
+27. [459. Repeated Substring Pattern](https://leetcode.cn/problems/repeated-substring-pattern/)
+
+    1. 方法一：暴力解
+    2. 方法二：由数学归纳法可以发现，将两个s放在一起，去掉头尾一个字符，如果能在剩余中找到任意一个s，则说明是存在重复的
+    3. 方法三：kmp
 
     
 

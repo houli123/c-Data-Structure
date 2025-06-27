@@ -107,7 +107,24 @@ int lower_one_mask(int n) {
 * n=4 -> Ox23456781, n=20 -> Ox67812345
 */
 unsigned rotate_left(unsigned x, int n) {
-    
+    // 思路大概是分两部分处理，1是提取左边的，2是提取右边的，之后把右边放左边，左边放右边
+    unsigned left = x << n;  // 右端会为0
+    // 注意看这题给的是unsigned的x，这就表明我们的右移都是逻辑右移，左边是用0填充的，这就不用担心了
+    unsigned right = x >> (32 - n);
+    return right | left;
+}
+
+// 2. 70 写出具有如下原型的函数的代码：
+/*
+* Return 1 when x can be represented as an n-bit, 2's-complement
+* number; 0 otherwise
+* Assume 1 <= n <= w
+*/
+int fits_bits(int x, int n) {
+    // 当x可以被表示为一个n位（n可能比W小）的二进制补码时，返回1 ，否则0
+    int w = sizeof(x) << 3;
+    int offSet = w - n;
+    return !((x << offSet >> offSet) ^ x);
 }
 
 
@@ -136,6 +153,10 @@ int main() {
     cout << int_size_is_32_for_16bit() << endl;
 
     cout << lower_one_mask(17) << endl;
+
+    cout << rotate_left(0x12345678, 20) << endl;
+
+    cout << fits_bits(0b00000110, 3) << endl;  // 0，因为3位的x的最高位是1，是负值
 
     cout << "-----------" << endl;
 

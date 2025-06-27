@@ -8,7 +8,7 @@ typedef unsigned char *byte_pointer;
 
 int is_little_endian() {
 	short s = 1;
-	byte_pointer p = (byte_pointer)&s;
+	byte_pointer p = (byte_pointer) &s;
 	return *p;
 }
 
